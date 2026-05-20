@@ -1,1 +1,1 @@
-# school_backend_system
+# SchooliM (Backend Cli School Management System)
