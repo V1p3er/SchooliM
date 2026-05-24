@@ -7,13 +7,13 @@ from domain.vo.password import Password
 def test_successful_password():
 
     password = Password("StrongPassword123@")
-    assert password.value == "StrongPassword123@"
+    assert password._value == "StrongPassword123@"
 
 def test_pass_is_immutable():
 
     password = Password("StrongPassword123@")
     with pytest.raises(FrozenInstanceError):
-        password.value = "StrongPassword123@11"
+        password._value = "StrongPassword123@11"
 
 # failures test
 @pytest.mark.parametrize(
@@ -26,8 +26,8 @@ def test_pass_is_immutable():
         ("BIstoooo1231241sf", ValueError),
         ("", ValueError),
         (" ", ValueError),
-        (None, TypeError),
-        (123414, TypeError)
+        (None, ValueError),
+        (123414, ValueError)
     ]
 )
 def test_invalid_password(invalid_input, error_type):
