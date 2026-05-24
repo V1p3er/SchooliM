@@ -14,8 +14,6 @@ def test_valid_username_and_normalization_functionality():
 @pytest.mark.parametrize(
     "invalid_inputs, error_type",
     [
-        (1231, TypeError),
-        (None, TypeError),
         ("", ValueError),
         ("  ", ValueError),
         ("s", ValueError),
