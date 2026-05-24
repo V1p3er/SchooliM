@@ -12,11 +12,12 @@ class UserName:
 
     # post init validation for ensuring correct object would be created
     def __post_init__(self):
-
-        if not isinstance(self._value, str):
-            raise TypeError("Username must be a string!")
         
-        normalize = self._value.strip().lower()
+        try:
+            normalize = str(self._value).strip().lower()
+        except(TypeError, ValueError):
+            raise TypeError("Username must be a string!")
+
         length = len(normalize)
 
         if not normalize:
