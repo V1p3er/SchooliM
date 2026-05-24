@@ -10,15 +10,13 @@ SPECIAL_PATTERN = re.compile(r"[^a-zA-Z0-9]")
 @dataclass(frozen=True, slots=True)
 class Password:
     
-    value: str = field(repr=False)
+    _value: str = field(repr=False)
 
     # post init validations
     def __post_init__(self):
         
-        if not isinstance(self.value, str):
-            raise TypeError("password should be string")
 
-        normalized = self.value.strip()
+        normalized = str(self._value).strip()
 
         if len(normalized) < 12:
             raise ValueError("password should be at least 12 characters")
@@ -34,3 +32,5 @@ class Password:
         
         if not SPECIAL_PATTERN.search(normalized):
             raise ValueError("password should contain at least one special character")
+        
+        object.__setattr__(self, "_value", normalized)
