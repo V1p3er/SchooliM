@@ -2,5 +2,6 @@ from dataclasses import dataclass
 
 
 @dataclass(slots=True)
-class ManagerProfile:
-    username: str
+class Subject:
+    code: str
+    name: str
